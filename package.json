@@ -2,7 +2,7 @@
   "name": "@sigmayun/react-native-vconsole",
   "version": "0.0.1",
   "description": "vconsole for react native",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "postversion": "git push --tags && git push && npm publish"
   },
@@ -41,6 +41,12 @@
     ],
     "env": {
       "react-native/react-native": true
+    },
+    "rules": {
+      "no-restricted-syntax": 0,
+      "no-cond-assign": 0,
+      "guard-for-in": 0,
+      "no-param-reassign": 0
     }
   },
   "eslintIgnore": [
@@ -62,5 +68,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "dependencies": {
+    "@types/react-native": "^0.61.23"
   }
 }

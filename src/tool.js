@@ -31,10 +31,7 @@ function throttle(delay, noTrailing, callback, debounceMode) {
     if (debounceMode === undefined && elapsed > delay) {
       exec()
     } else if (noTrailing !== true) {
-      timeoutID = setTimeout(
-        debounceMode ? clear : exec,
-        debounceMode === undefined ? delay - elapsed : delay
-      )
+      timeoutID = setTimeout(debounceMode ? clear : exec, debounceMode === undefined ? delay - elapsed : delay)
     }
   }
 
@@ -42,12 +39,10 @@ function throttle(delay, noTrailing, callback, debounceMode) {
 }
 
 function debounce(delay, atBegin, callback) {
-  return callback === undefined
-    ? throttle(delay, atBegin, false)
-    : throttle(delay, callback, atBegin !== false)
+  return callback === undefined ? throttle(delay, atBegin, false) : throttle(delay, callback, atBegin !== false)
 }
 
 module.exports = {
   throttle,
-  debounce
+  debounce,
 }

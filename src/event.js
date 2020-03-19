@@ -44,7 +44,7 @@ export default class Event {
   }
 }
 let event
-module.exports = (function() {
+module.exports = (() => {
   if (!event) {
     event = new Event()
   }
