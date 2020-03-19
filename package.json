@@ -1,6 +1,6 @@
 {
   "name": "@sigmayun/react-native-vconsole",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vconsole for react native",
   "main": "index.jsx",
   "scripts": {
