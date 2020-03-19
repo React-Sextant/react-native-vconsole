@@ -1,7 +1,3 @@
-/**
- * vconsole for react native 开发测试工具
- */
-
 import React, { PureComponent } from 'react'
 import {
   View,

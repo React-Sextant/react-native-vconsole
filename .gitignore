@@ -1,1 +1,9 @@
-yarn.lock
+# node
+**/node_modules
+package-lock.json
+# Mac os
+.DS_Store
+
+# yarn
+yarn-error.log
+*.lock
