@@ -106,7 +106,7 @@ class RNVConsole extends PureComponent {
     const panels = {
       Log,
       Network,
-      Info: <Info info={this.props.AppInfo} />,
+      Info: <Info info={this.props.appInfo} />,
       Empty: this.renderEmptyPanel(),
     }
     return (
@@ -125,13 +125,16 @@ class RNVConsole extends PureComponent {
 
     return (
       <Animated.View {...this.panResponder.panHandlers} style={[styles.homeBtn, btnStyle]}>
-        <Text style={styles.homeBtnText}>RNVConsole</Text>
+        <Text style={styles.homeBtnText}>VConsole</Text>
       </Animated.View>
     )
   }
 
   render() {
-    return this.props.showLogWhenDev ? null : this.state.showPanel ? this.renderPanel() : this.renderHomeBtn()
+    if (this.props.showLogWhenDev) {
+      return global.__DEV__ ? (this.state.showPanel ? this.renderPanel() : this.renderHomeBtn()) : null
+    }
+    return this.state.showPanel ? this.renderPanel() : this.renderHomeBtn()
   }
 }
 
@@ -218,13 +221,5 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
 })
-
-// module.exports = {
-//   Panel: RNVConsole,
-//   showLogWhenDev(info) {
-//     AppInfo = info
-//     return global.__DEV__ ? <RNVConsole /> : null
-//   },
-// }
 
 export default RNVConsole
