@@ -1,6 +1,11 @@
 {
   "ignore_dirs": [
     ".git",
-    "node_modules"
+    "node_modules",
+    "yarn-error.log",
+    "yarn.lock",
+    "README.md",
+    "tsconfig.json",
+    "package.json"
   ]
 }
