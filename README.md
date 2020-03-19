@@ -1,6 +1,6 @@
-# RNVConsole
-vConsole for react native, inspired by vconsole & vconsole-react-native.
-Debugger on top of screen. Have a try in expo https://snack.expo.io/SklJHMS3S
+# @sigmayun/react-native-vconsole
+
+vConsole for react native, inspired by vconsole & vconsole-react-native &rnvconsole. Debugger on top of screen. Have a try in expo https://snack.expo.io/SklJHMS3S
 
 ## Features
 1. console[log, warn, error, info] in Log Panel.
@@ -8,11 +8,13 @@ Debugger on top of screen. Have a try in expo https://snack.expo.io/SklJHMS3S
 3. Customized Version Info you want to show.
 
 ## Install
-```
-npm install rnvconsole
+
+```shell
+$ yarn add @sigmayun/react-native-vconsole
 ```
 
 ## Usage
+
 ```javascript
 /* INFO is optional */
 const INFO = {

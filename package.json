@@ -1,14 +1,14 @@
 {
-  "name": "rnvconsole",
-  "version": "0.1.1",
+  "name": "@sigmayun/react-native-vconsole",
+  "version": "0.0.0",
   "description": "vconsole for react native",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postversion": "git push --tags && git push && npm publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fwon/RNVConsole.git"
+    "url": "git+https://github.com/sigmayun/react-native-vconsole.git"
   },
   "keywords": [
     "vconsole;",
@@ -20,10 +20,14 @@
     "react": "*",
     "react-native": ">=0.50.0"
   },
-  "author": "fwon",
+  "author": {
+    "name": "杨俊宁",
+    "url": "https://youngjuning.js.org",
+    "email": "youngjuning@aliyun.com"
+  },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fwon/RNVConsole/issues"
+    "url": "https://github.com/sigmayun/react-native-vconsole/issues"
   },
-  "homepage": "https://github.com/fwon/RNVConsole#readme"
+  "homepage": "https://github.com/sigmayun/react-native-vconsole#readme"
 }
