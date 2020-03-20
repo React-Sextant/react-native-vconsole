@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet, View } from 'react-native'
 import JsonTree from '@sishuguojixuefu/react-native-json-tree'
+import dayjs from 'dayjs'
 import event from './event'
 import { debounce } from './tool'
 
@@ -27,7 +28,7 @@ class LogStack {
     this.logs.push({
       method,
       data,
-      time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`,
+      time: dayjs().format('YYYY年M月D日 HH:mm:ss SSS'),
       id: unixId(),
     })
     this.notify()
@@ -97,7 +98,7 @@ class Console extends Component {
     return (
       <View style={styles.logItem}>
         <Text style={styles.logItemTime}>{item.time}</Text>
-        <JsonTree data={item.data} hideRoot invertTheme={item.method !== 'error'} />
+        <JsonTree data={item.data} hideRoot />
       </View>
     )
   }
@@ -123,29 +124,12 @@ class Console extends Component {
 }
 
 const styles = StyleSheet.create({
-  log: {
-    color: '#000',
-  },
-  warn: {
-    color: 'orange',
-    backgroundColor: '#fffacd',
-    borderColor: '#ffb930',
-  },
-  error: {
-    color: '#dc143c',
-    backgroundColor: '#ffe4e1',
-    borderColor: '#f4a0ab',
-  },
   logItem: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#eee',
-  },
-  logItemText: {
-    fontSize: 12,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
+    borderColor: '#04be02',
   },
   logItemTime: {
+    paddingVertical: 6,
     fontSize: 14,
     fontWeight: '700',
     textAlign: 'center',
