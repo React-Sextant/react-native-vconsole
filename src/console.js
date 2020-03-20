@@ -23,6 +23,9 @@ class LogStack {
       this.logs = this.logs.slice(1)
     }
     const date = new Date()
+    if (method === 'warn') {
+      return
+    }
     this.logs.push({
       method,
       data: strLog(data),
