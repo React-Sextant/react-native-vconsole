@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FlatList, Text, StyleSheet, View } from 'react-native'
+import JsonTree from '@sishuguojixuefu/react-native-json-tree'
 import event from './event'
 import { debounce } from './tool'
 
@@ -23,12 +24,9 @@ class LogStack {
       this.logs = this.logs.slice(1)
     }
     const date = new Date()
-    if (method === 'warn') {
-      return
-    }
     this.logs.push({
       method,
-      data: strLog(data),
+      data,
       time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`,
       id: unixId(),
     })
@@ -99,7 +97,7 @@ class Console extends Component {
     return (
       <View style={styles.logItem}>
         <Text style={styles.logItemTime}>{item.time}</Text>
-        <Text style={[styles.logItemText, styles[item.method]]}>{item.data}</Text>
+        <JsonTree data={item.data} hideRoot invertTheme={item.method !== 'error'} />
       </View>
     )
   }
@@ -148,7 +146,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   logItemTime: {
-    fontSize: 11,
+    fontSize: 14,
     fontWeight: '700',
     textAlign: 'center',
   },
@@ -158,36 +156,8 @@ function unixId() {
   return Math.round(Math.random() * 1000000).toString(16)
 }
 
-function strLog(logs) {
-  const arr = logs.map(data => formatLog(data))
-  return arr.join(' ')
-}
-
-function formatLog(obj) {
-  if (
-    obj === null ||
-    obj === undefined ||
-    typeof obj === 'string' ||
-    typeof obj === 'number' ||
-    typeof obj === 'boolean' ||
-    typeof obj === 'function'
-  ) {
-    return `"${String(obj)}"`
-  }
-  if (obj instanceof Date) {
-    return `Date(${obj.toISOString()})`
-  }
-  if (Array.isArray(obj)) {
-    return `Array(${obj.length})[${obj.map(elem => formatLog(elem))}]`
-  }
-  if (obj.toString) {
-    return `object(${JSON.stringify(obj, null, 2)})`
-  }
-  return 'unknown data'
-}
-
 function proxyConsole(console, stack) {
-  const methods = ['log', 'warn', 'error', 'info']
+  const methods = ['log', 'error', 'info']
   methods.forEach(method => {
     const fn = console[method]
     console[method] = (...args) => {

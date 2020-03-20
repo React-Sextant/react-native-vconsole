@@ -71,6 +71,7 @@
     ]
   },
   "dependencies": {
+    "@sishuguojixuefu/react-native-json-tree": "^1.2.3",
     "@types/react-native": "^0.61.23"
   }
 }
