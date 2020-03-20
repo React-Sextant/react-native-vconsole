@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react'
 import { View, Text, TouchableOpacity, PanResponder, Animated, Dimensions, StyleSheet, NativeModules } from 'react-native'
 import event from './src/event'
-import Network from './src/network'
 import Log from './src/console'
 import Info from './src/info'
 
-const PANELS = ['Log', 'Network', 'Info']
+const PANELS = ['Log', 'Info']
 const { width, height } = Dimensions.get('window')
 
 class RNVConsole extends PureComponent {
@@ -84,9 +83,11 @@ class RNVConsole extends PureComponent {
         <TouchableOpacity onPress={this.clearLogs} style={styles.panelBottomBtn}>
           <Text style={styles.panelBottomBtnText}>Clear</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={this.showDevPanel} style={styles.panelBottomBtn}>
-          <Text style={styles.panelBottomBtnText}>Dev</Text>
-        </TouchableOpacity>
+        {global.__DEV__ ? (
+          <TouchableOpacity onPress={this.showDevPanel} style={styles.panelBottomBtn}>
+            <Text style={styles.panelBottomBtnText}>Dev</Text>
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity onPress={this.togglePanel} style={styles.panelBottomBtn}>
           <Text style={styles.panelBottomBtnText}>Hide</Text>
         </TouchableOpacity>
@@ -105,7 +106,6 @@ class RNVConsole extends PureComponent {
   renderPanel() {
     const panels = {
       Log,
-      Network,
       Info: <Info info={this.props.appInfo} />,
       Empty: this.renderEmptyPanel(),
     }
