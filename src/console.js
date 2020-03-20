@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, Text, StyleSheet, View } from 'react-native'
+import { FlatList, Text, StyleSheet, View, ScrollView } from 'react-native'
 import JsonTree from '@sishuguojixuefu/react-native-json-tree'
 import dayjs from 'dayjs'
 import event from './event'
@@ -98,7 +98,14 @@ class Console extends Component {
     return (
       <View style={styles.logItem}>
         <Text style={styles.logItemTime}>{item.time}</Text>
-        <JsonTree data={item.data} hideRoot />
+        <ScrollView
+          automaticallyAdjustContentInsets={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          horizontal={true}
+        >
+          <JsonTree data={item.data} hideRoot />
+        </ScrollView>
       </View>
     )
   }
@@ -126,7 +133,7 @@ class Console extends Component {
 const styles = StyleSheet.create({
   logItem: {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: '#04be02',
+    borderColor: '#d3d3d3',
   },
   logItemTime: {
     paddingVertical: 6,
