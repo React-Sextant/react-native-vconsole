@@ -149,12 +149,16 @@ function unixId() {
 
 function proxyConsole(console, stack) {
   const methods = ['log', 'error', 'info']
+  global.vconsole = {};
   methods.forEach(method => {
     const fn = console[method]
     console[method] = (...args) => {
       stack.addLog(method, args)
       fn.apply(console, args)
     }
+    global.vconsole[method] = (...args) => {
+      stack.addLog(method, args);
+    };
   })
 }
 
